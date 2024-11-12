@@ -11,6 +11,11 @@ describe("Validación de acceso a URL", () => {
         return false; // Ignorar el error
       }
     });
+    cy.on("uncaught:exception", (err) => {
+      if (err.message.includes("postMessage")) {
+        return false; // Ignora el error
+      }
+    });
 
     //Seleccionar origen y destino
     cy.wait(1000);
@@ -37,7 +42,7 @@ describe("Validación de acceso a URL", () => {
     cy.get("#u50849-4", { timeout: 10000 }).should("be.visible");
     cy.wait(5000);
     cy.get("#u50849-4").first().click();
-    cy.wait(7000);
+    cy.wait(5000);
 
     //Modal de confirmación de asientos
     cy.get(".aceptarBtn").click();
@@ -53,9 +58,9 @@ describe("Validación de acceso a URL", () => {
     for (let i = 0; i < adultos; i++) {
       cy.get("input[name=nombre]").eq(i).type("a{enter}");
     }
-    cy.wait(1000);
+    cy.wait(2000);
 
     //AVANZAR AL PAGO
-    cy.get("#u76094").click();
+    cy.get("#u76080-4").click({ force: true });
   });
 });
