@@ -39,7 +39,10 @@ describe("Validación de acceso a URL", () => {
     cy.get("#idboton").click();
 
     //Validamos que aparezcan las corridas
-    cy.get("#u50849-4", { timeout: 10000 }).should("be.visible");
+    cy.get("#u50849-4", { timeout: 10000 })
+      .should("be.visible")
+      .first()
+      .click();
     cy.wait(5000);
     cy.get("#u50849-4").first().click();
     cy.wait(5000);
