@@ -3,7 +3,7 @@ it("venta-ok", function () {
   /* ==== Generated with Cypress Studio ==== */
 
   //Página web
-  cy.visit("http://10.20.180.152/OExpress/Filtros/ComboVentasES");
+  cy.visit("http://webq.omnibusexpress.com/OExpress/Filtros/ComboVentasES");
 
   //Esperoa para cargar la página completamente
   cy.wait(1000);
@@ -29,10 +29,11 @@ it("venta-ok", function () {
 
   //Seleccion de destino
   cy.get("#Destino").select("CJZ");
+  cy.wait(3000);
 
   //Modifica el valor de la fecha directamente
   cy.get("#fsalida")
-    .invoke("val", "16/11/2024") // Cambia a la fecha deseada en formato DD/MM/YYYY
+    .invoke("val", "22/11/2024") // Cambia a la fecha deseada en formato DD/MM/YYYY
     .trigger("change"); // Dispara un evento para simular que se cambió el valor
 
   //Selección de pasajeros
@@ -40,8 +41,5 @@ it("venta-ok", function () {
   cy.get(".cerrar-selector").click();
 
   //Buscar corridas
-  cy.pause();
   cy.get("input[value=BUSCAR]").click();
-
-  cy.pause();
 });
