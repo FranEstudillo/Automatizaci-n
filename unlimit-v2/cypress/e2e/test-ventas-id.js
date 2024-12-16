@@ -11,12 +11,12 @@ describe("template spec", () => {
     const asientos = a + m + ins + e + p;
 
     //FECHAS DE VIAJE
-    const fechaSalida = "14/12/2024";
+    const fechaSalida = "18/12/2024";
     const fechaRegreso = "20/12/2024";
 
     //ORIGEN Y DESTINO
     const ORI = "MEX";
-    const DES = "MTY";
+    const DES = "AGU";
 
     // Ignorar el error de asientosRaw.filter
     cy.on("uncaught:exception", (e) => {
@@ -144,7 +144,7 @@ describe("template spec", () => {
     const asientos = a + m + ins + e + p;
 
     //FECHAS DE VIAJE
-    const fechaSalida = "14/12/2024";
+    const fechaSalida = "18/12/2024";
     const fechaRegreso = "20/12/2024";
 
     //ORIGEN Y DESTINO
@@ -278,7 +278,7 @@ describe("template spec", () => {
     const asientos = a + m + ins + e + p;
 
     //FECHAS DE VIAJE
-    const fechaSalida = "14/12/2024";
+    const fechaSalida = "18/12/2024";
     const fechaRegreso = "20/12/2024";
 
     //ORIGEN Y DESTINO
@@ -413,7 +413,7 @@ describe("template spec", () => {
     const asientos = a + m + ins + e + p;
 
     //FECHAS DE VIAJE
-    const fechaSalida = "14/12/2024";
+    const fechaSalida = "18/12/2024";
     const fechaRegreso = "20/12/2024";
 
     //ORIGEN Y DESTINO
