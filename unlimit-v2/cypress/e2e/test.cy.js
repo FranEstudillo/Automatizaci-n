@@ -1,22 +1,20 @@
-describe("template spec", () => {
-  it("multiples pasajeros sencillo", function () {
+describe("Procesos de venta en la página web de ODM", () => {
+  //TIPOS DE PASAJEROS
+  let adulto = 1;
+  let menor = 0;
+  let insen = 0;
+  let estudiante = 0;
+  let docente = 0;
+  let numeroAsientos = adulto + menor + insen + estudiante + docente;
+  //FECHAS DE VIAJE
+  let fechaSalidaViaje = "20/12/2024";
+  let fechaRegresoViaje = "25/12/2024";
+  //ORIGEN Y DESTINO
+  let origenViaje = "MEX";
+  let destinoViaje = "MTY";
+
+  it.only("CP 1 - Venta de viaje sencillo con un solo pasajero", function () {
     cy.visit("https://odm.com.mx/gridsistemas.php");
-
-    //TIPOS DE PASAJEROS
-    const a = 2;
-    const m = 1;
-    const ins = 1;
-    const e = 0;
-    const p = 0;
-    const asientos = a + m + ins + e + p;
-
-    //FECHAS DE VIAJE
-    const fechaSalida = "14/12/2024";
-    const fechaRegreso = "20/12/2024";
-
-    //ORIGEN Y DESTINO
-    const ORI = "MEX";
-    const DES = "MTY";
 
     // Ignorar el error de asientosRaw.filter
     cy.on("uncaught:exception", (e) => {
@@ -31,24 +29,24 @@ describe("template spec", () => {
       }
     });
     //Seleccionar el Origen
-    cy.get("#cbx_estado").select(ORI, { force: true });
+    cy.get("#cbx_estado").select(origenViaje, { force: true });
     //Seleccionar el destino
-    cy.get("#cbx_municipio").select(DES, { force: true });
+    cy.get("#cbx_municipio").select(destinoViaje, { force: true });
     //Seleccionar la fecha de viaje
     //Modifica el valor de la fecha directamente
     cy.get("#fechasalida1")
-      .invoke("val", fechaSalida) // Cambia a la fecha deseada en formato DD/MM/YYYY
+      .invoke("val", fechaSalidaViaje) // Cambia a la fecha deseada en formato DD/MM/YYYY
       .trigger("change"); // Dispara un evento para simular que se cambió el valor
     //Seleccionamos la cantidad de adulto
-    cy.get("#adultos").select(a);
+    cy.get("#adultos").select(adulto);
     //Seleccionamos la cantidad de menor
-    cy.get("#menor").select(m);
+    cy.get("#menor").select(menor);
     //Seleccionamos la cantidad de insen
-    cy.get("#inapam").select(ins);
+    cy.get("#inapam").select(insen);
     //Seleccionamos la cantidad de estudiante
-    cy.get("#estudiantes").select(e);
+    cy.get("#estudiantes").select(estudiante);
     //Seleccionamos la cantidad de profesor
-    cy.get("#profesores").select(p);
+    cy.get("#profesores").select(docente);
     //PAUSA PARA VALIDAR DATOS
     //cy.wait(10000);
 
@@ -66,20 +64,20 @@ describe("template spec", () => {
     cy.wait(5000);
     //selección de asientos
     // cy.get("td.piso1.disponible[name=4]").click({ multiple: true }); //Selecciona asientos en específico
-    for (let q = 0; q < a; q++) {
+    for (let q = 0; q < adulto; q++) {
       cy.get("td.piso1.disponible").first().click({ multiple: true });
     }
     // MENORES
-    for (let q = 0; q < m; q++) {
+    for (let q = 0; q < menor; q++) {
       cy.get("td.piso1.disponible").first().click({ multiple: true });
     }
     //INSEN
-    for (let q = 0; q < ins; q++) {
+    for (let q = 0; q < insen; q++) {
       cy.get("td.piso1.disponible").first().click({ multiple: true });
     }
 
     //Asignamos los nombres a los pasajeros
-    for (let i = 0; i < asientos; i++) {
+    for (let i = 0; i < numeroAsientos; i++) {
       cy.get("input[name=nombre]").eq(i).clear("te");
       cy.get("input[name=nombre]").eq(i).type("test auto");
       // cy.get(':nth-child({i}) > [height="33"] > #datosname').clear("te");
@@ -105,7 +103,7 @@ describe("template spec", () => {
 
     //NUMERO DE TARJETA
     cy.get("#tarjetaA").clear("5");
-    cy.get("#tarjetaA").type("4000 0000 0000 0051");
+    cy.get("#tarjetaA").type("4000 0000 0000 0085");
 
     //PAUSA PARA CARGAR LAS PROMOCIONES BANCARIAS
     //cy.wait(10000);
